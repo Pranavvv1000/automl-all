@@ -1,4 +1,3 @@
-import threading
 from flask import Flask, render_template_string
 
 app = Flask(__name__)
@@ -10,7 +9,6 @@ apps = [
     ("https://feature-engineering-service.onrender.com", "Feature Engineering"),
     ("https://model-training-service.onrender.com", "Model Training & Evaluation"),
 ]
-
 
 DASHBOARD_TEMPLATE = """
 <!doctype html>
@@ -181,8 +179,4 @@ def dashboard():
     return render_template_string(DASHBOARD_TEMPLATE, apps=app_links)
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=10100)
-        threading.Thread(target=run_app, args=(file_name, port)).start()
-
-   
-    run_flask_app()
+    app.run(host='0.0.0.0', port=10000)

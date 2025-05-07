@@ -4,10 +4,10 @@ app = Flask(__name__)
 
 # Replace these with your actual Render URLs
 apps = [
-    ("https://data-cleaning-service.onrender.com", "Data Cleaning Dashboard"),
-    ("https://eda-service.onrender.com", "Exploratory Data Analysis"),
-    ("https://feature-engineering-service.onrender.com", "Feature Engineering"),
-    ("https://model-training-service.onrender.com", "Model Training & Evaluation"),
+    ("https://automl-datac-cyg2.onrender.com", "Data Cleaning Dashboard"),
+    ("https://automl-eda.onrender.com", "Exploratory Data Analysis"),
+    ("https://automl-fe.onrender.com", "Feature Engineering"),
+    ("https://automl-model-ma4e.onrender.com", "Model Training & Evaluation"),
 ]
 
 DASHBOARD_TEMPLATE = """

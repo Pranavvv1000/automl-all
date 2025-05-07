@@ -1,21 +1,15 @@
 import threading
-import subprocess
-from flask import Flask, render_template, redirect, render_template_string, url_for
-
-
-apps = [
-    ("data_c/clean_main.py", 5003, "Data Cleaning Dashboard"),
-    ("EDA/eda_main.py", 5002, "Exploratory Data Analysis"),
-    ("feature_e/feature_main.py", 5004, "Feature Engineering"),
-    ("model/model_main.py", 5001, "Model Training & Evaluation"),
-]
-
-
-def run_app(file_name, port):
-    subprocess.Popen(["python", file_name])
-
+from flask import Flask, render_template_string
 
 app = Flask(__name__)
+
+# Replace these with your actual Render URLs
+apps = [
+    ("https://data-cleaning-service.onrender.com", "Data Cleaning Dashboard"),
+    ("https://eda-service.onrender.com", "Exploratory Data Analysis"),
+    ("https://feature-engineering-service.onrender.com", "Feature Engineering"),
+    ("https://model-training-service.onrender.com", "Model Training & Evaluation"),
+]
 
 
 DASHBOARD_TEMPLATE = """
@@ -181,22 +175,13 @@ DASHBOARD_TEMPLATE = """
 </html>
 """
 
-
 @app.route('/')
-def landing():
-    return render_template('landing.html')
-
-@app.route('/dashboard')
 def dashboard():
-    app_links = [{"name": name, "url": f"http://127.0.0.1:{port}/"} for _, port, name in apps]
+    app_links = [{"name": name, "url": url} for url, name in apps]
     return render_template_string(DASHBOARD_TEMPLATE, apps=app_links)
 
-def run_flask_app():
-    app.run(port=8000)
-
 if __name__ == "__main__":
-    
-    for file_name, port, _ in apps:
+    app.run(host='0.0.0.0', port=10100)
         threading.Thread(target=run_app, args=(file_name, port)).start()
 
    
